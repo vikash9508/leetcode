@@ -3,11 +3,11 @@ public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
       vector<int> ans;
         
-        int m = matrix.size();
-        int n = matrix[0].size();
+        int row = matrix.size();
+        int col= matrix[0].size();
         
-        int top = 0, bottom = m - 1;
-        int left = 0, right = n - 1;
+        int top = 0, bottom = row - 1;
+        int left = 0, right = col - 1;
         
         while (top <= bottom && left <= right) {
             
