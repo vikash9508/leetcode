@@ -15,39 +15,21 @@ public:
        ListNode *temp=head;
        if(head->next==NULL)
        return 1;
-
-       int count=0;
-       while(temp)
-       {
-        count++;
+       vector<int>nums;
+       while(temp){
+        nums.push_back(temp->val);
         temp=temp->next;
        };
-       count/=2;
-       ListNode *curr=head,*prev=NULL;
-       while(count--)
-       {
-        prev=curr;
-        curr=curr->next;
-       };
-       prev->next=NULL;
-
-       ListNode *front=NULL;
-        prev=NULL;
-       while(curr){
-        front=curr->next;
-        curr->next=prev;
-        prev=curr;
-        curr=front;
-       };
-       ListNode *head1=head, *head2=prev;
-       while(head1)
-       {
-        if(head1->val !=head2->val)
+       int n=nums.size();
+       int i=0,j=n-1;
+       while(i<j){
+        if(nums[i]!=nums[j])
         return 0;
-        head1=head1->next;
-        head2=head2->next;
+        i++;
+        j--;
        }
-       return 1;
+        return 1;
+      
 
     }
 };
