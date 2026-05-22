@@ -11,8 +11,9 @@ public:
         while(!st.empty())
         {
             s[i] = st.top();
-            st.pop();
+            
             i++;
+            st.pop();
         }
         
     }
