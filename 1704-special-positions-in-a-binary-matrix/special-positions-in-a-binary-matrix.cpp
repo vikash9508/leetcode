@@ -4,33 +4,28 @@ public:
         int result=0;
         int n=mat.size();
         int m=mat[0].size();
-        for(int i=0;i<n;i++)
+        vector<int>rowcount(n,0);
+        vector<int>colcount(m,0);
+        for(int row=0;row<n;row++)
         {
-            for(int j=0;j<m;j++)
+            for(int col=0;col<m;col++)
             {
-                if(mat[i][j]==1)
+                if(mat[row][col]==1){
+                    rowcount[row]++;
+                    colcount[col]++;
+                }
+            }
+        }
+        for(int row=0;row<n;row++)
+        {
+            for(int col=0;col<m;col++)
+            {
+                if(mat[row][col]==1 &&rowcount[row]==1 && colcount[col]==1)
                 {
-                    bool special=true;
-                    for(int r=0;r<n;r++)
-                    {
-                        if(r!=i &&mat[r][j]==1){
-                        special=false;
-                        break;
-                        }
-                    }
-                     for(int c=0;c<m;c++)
-                    {
-                        if(c!=j &&mat[i][c]==1){
-                        special=false;
-                        break;
-                        }
-                    }
-                    if(special)
                     result++;
                 }
             }
         }
         return result;
-
     }
 };
