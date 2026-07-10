@@ -1,32 +1,36 @@
 class Solution {
 public:
     int numSpecial(vector<vector<int>>& mat) {
-        int m = mat.size();
-        int n = mat[0].size();
-        
-        vector<int> row(m, 0), col(n, 0);
-        
-        // Count 1s in rows and columns
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-                if(mat[i][j] == 1){
-                    row[i]++;
-                    col[j]++;
+        int result=0;
+        int n=mat.size();
+        int m=mat[0].size();
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(mat[i][j]==1)
+                {
+                    bool special=true;
+                    for(int r=0;r<n;r++)
+                    {
+                        if(r!=i &&mat[r][j]==1){
+                        special=false;
+                        break;
+                        }
+                    }
+                     for(int c=0;c<m;c++)
+                    {
+                        if(c!=j &&mat[i][c]==1){
+                        special=false;
+                        break;
+                        }
+                    }
+                    if(special)
+                    result++;
                 }
             }
         }
-        
-        int count = 0;
-        
-        // Check special positions
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-                if(mat[i][j] == 1 && row[i] == 1 && col[j] == 1){
-                    count++;
-                }
-            }
-        }
-        
-        return count;
+        return result;
+
     }
 };
