@@ -2,16 +2,17 @@ class Solution {
 public:
 
     vector<int> countBits(int n) {
-        vector<int>result;
+        vector<int>result(n+1);
      
-        result.push_back(0);
+        if(n==0)
+        return result;
        for(int i=1;i<=n;i++) 
        {
         if(i%2==0){
-        result.push_back(result[i/2]);
+        result[i]=result[i/2];
         }
          if(i%2!=0){
-        result.push_back(result[i/2]+1);
+        result[i]=result[i/2]+1;
         }
        }
        return result;
