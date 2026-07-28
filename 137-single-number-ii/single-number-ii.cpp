@@ -1,13 +1,24 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        int n=nums.size();
-        sort(nums.begin(),nums.end());
-        for(int i=0;i<n-2;i+=3)
+       int result=0;
+       for(int k=0;k<32;k++)
+       {
+        int temp=(1<<k);
+        int countone=0;
+        int countzero=0;
+        for(int &num:nums)
         {
-            if(nums[i]!=nums[i+1] || nums[i]!=nums[i+2])
-            return nums[i];
+            if((num&temp)==0)
+            countzero++;
+            else
+            countone++;
         }
-        return nums[n-1];
+        if(countone%3==1)
+        {
+            result=(result | temp);
+        }
+       } 
+       return result;
     }
 };
