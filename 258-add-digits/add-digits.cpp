@@ -1,15 +1,18 @@
 class Solution {
 public:
     int addDigits(int num) {
-      while(num>=10){
-        int ans=0,rem=0;
-        while(num!=0){
-            rem=num%10;
+        while(num>=10)
+        {
+        int result=0;
+        while(num!=0)
+        {
+            int n=num%10;
             num/=10;
-            ans+=rem;
+            result+=n;
         }
-        num=ans;
-      }
-      return num;  
+        num=result;
+        }
+
+        return num ;
     }
 };
