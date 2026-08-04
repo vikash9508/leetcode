@@ -1,31 +1,21 @@
 class Solution {
 public:
     vector<int> findMissingElements(vector<int>& nums) {
-        unordered_set<int>st;
-        for(int i=0;i<=nums.size()-1;i++)
+      int mn=*min_element(nums.begin(),nums.end());
+      int mx=*max_element(nums.begin(),nums.end());
+      vector<bool>present(mx-mn+1,false);
+      for(int i=0;i<nums.size();i++)
+      {
+        present[nums[i]-mn]=true;
+      }  
+      vector<int>ans;
+      for(int i=0;i<present.size();i++)
+      {
+        if(present[i]==false)
         {
-            st.insert(nums[i]);
+            ans.push_back(i+mn);
         }
-        int mn=nums[0];
-        int mx=nums[0];
-        for(int i=1;i<=nums.size()-1;i++)
-        {
-            if(nums[i]<mn)
-            {
-                mn=nums[i];
-            }
-            if(nums[i]>mx)
-            {
-                mx=nums[i];
-            }
-        }
-        vector<int>ans;
-        for(int i=mn;i<=mx;i++)
-        {
-            if(st.count(i)==0)
-            ans.push_back(i);
-        }
-
-        return ans;
+      }
+      return ans;
     }
 };
