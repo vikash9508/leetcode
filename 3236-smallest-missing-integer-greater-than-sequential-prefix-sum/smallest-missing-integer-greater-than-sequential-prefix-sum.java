@@ -1,11 +1,7 @@
 class Solution {
     public int missingInteger(int[] nums) {
       int n=nums.length;
-      Set<Integer>st=new HashSet<>();
-      for( int num:nums)
-      {
-        st.add(num);
-      } 
+     
       int sequential=nums[0];
       for(int j=1;j<n;j++)
       {
@@ -18,10 +14,14 @@ class Solution {
             break;
         }
       }
-      while(st.contains(sequential))
-      {
-        sequential++;
-      } 
+    Arrays.sort(nums);
+    for(int i=0;i<n;i++)
+    {
+        if(nums[i]==sequential)
+        {
+            sequential++;
+        }
+    }
       return sequential;
     }
 }
