@@ -1,53 +1,53 @@
 class Solution {
 public:
-bool isequal(stack<char>s1,stack<char>s2)
-{
-    if(s1.size()!=s2.size())
-    return 0;
-    while(!s1.empty() && !s2.empty())
+    bool isequal(stack<char>s1,stack<char>s2)
     {
-    if(s1.top()==s2.top())
-    {
-        s1.pop();
-        s2.pop();
+        if(s1.size()!=s2.size())
+        {
+            return 0;
+        }
+        while(!s1.empty() && !s2.empty())
+        {
+            if(s1.top()==s2.top())
+            {
+                s1.pop();
+                s2.pop();
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        return 1;
+        
     }
-    else
-    {
-        return 0;
-    }
-    }
-    return 1;
-}
     bool backspaceCompare(string s, string t) {
-       stack<char>s1;
-       stack<char>s2;
-       for(int i=0;i<s.size();i++)
-       {
-        if(s[i]=='#')
+        stack<char>st1;
+        stack<char>st2;
+        for(auto ch:s)
         {
-            if(!s1.empty())
-            s1.pop();
-
+            if(ch=='#')
+            {
+                if(!st1.empty())
+                st1.pop();
+            }
+            else
+            {
+                st1.push(ch);
+            }
         }
-        else
+         for(auto ch:t)
         {
-            s1.push(s[i]);
+            if(ch=='#')
+            {
+                if(!st2.empty())
+                st2.pop();
+            }
+            else
+            {
+                st2.push(ch);
+            }
         }
-       } 
-        for(int i=0;i<t.size();i++)
-       {
-        if(t[i]=='#')
-        {
-            if(!s2.empty())
-            s2.pop();
-
-        }
-        else
-        {
-            s2.push(t[i]);
-        }
-       } 
-
-       return isequal(s1,s2);
+        return isequal(st1,st2);
     }
 };
