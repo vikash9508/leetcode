@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int peakIndexInMountainArray(vector<int>& arr) {
+        int n=arr.size();
+        int i=0;
+        for(i=1;i<n-1;i++)
+        {
+            if(arr[i-1] < arr[i] && arr[i] > arr[i+1]){
+            return i;
+            break;
+            }
+        }
+        return -1;
+    }
+};
